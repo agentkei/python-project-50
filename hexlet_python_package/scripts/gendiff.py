@@ -6,9 +6,9 @@ def gendiff():
     parser.add_argument('first_file')
     parser.add_argument('second_file')
     
+    parser.add_argument('-f', '--format', help='set format of output')
     args = parser.parse_args()
-    print('Positional argument:', args.positional_argument)
-    print('Optional arguemnt', args.optional_argument)
+    print(args)
 
 def main():
     gendiff()

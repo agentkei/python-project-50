@@ -1,18 +1,19 @@
 [tool.poetry]
 name = "python-project-50"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "Второй учебный проект в курсе Хекслета. Вычисляет различия между двумя конфигурационными файлами."
+authors = ["lilpeep3 <you@example.com>"]
 readme = "README.md"
-packages = [{include = "hexlet_python_package"}]
+packages = [
+  {include = "hexlet_code"},]
+#{include = "gendiff"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-gendiff = "hexlet_python_package.scripts.gendiff:main"
+gendiff = "hexlet_code.starters.start:main"

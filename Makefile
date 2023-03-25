@@ -12,3 +12,14 @@ publish:
 
 package-install:
 	python3 -m pip install --user --force-reinstall dist/*.whl
+
+lint:
+	poetry run flake8
+
+retry:
+	poetry install
+	poetry build
+	python3 -m pip install --user  --force-reinstall dist/*.whl
+
+#test:
+	

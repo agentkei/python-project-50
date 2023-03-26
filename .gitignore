@@ -13,3 +13,4 @@ file2.json
 env
 venv
 push_to_git.sh
+.python-version

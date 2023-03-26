@@ -11,4 +11,5 @@ file1.json
 file2.json
 .pytest_cache
 env
+venv
 push_to_git.sh

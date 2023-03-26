@@ -10,3 +10,5 @@ dist/
 file1.json
 file2.json
 .pytest_cache
+env
+push_to_git.sh

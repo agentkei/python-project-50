@@ -9,3 +9,4 @@ dist/
 .vim
 file1.json
 file2.json
+.pytest_cache

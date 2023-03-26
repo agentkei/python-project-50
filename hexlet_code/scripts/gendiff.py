@@ -1,6 +1,7 @@
 import argparse
 import json
-
+import yaml
+from yaml import SafeLoader 
 
 def arguments():
     my_parser = argparse.ArgumentParser(prog='gendiff',
@@ -66,5 +67,11 @@ def format_str_dict(diff_dict):
 def generate_diff(file_path1, file_path2):
     file1 = json.load(open(file_path1))
     file2 = json.load(open(file_path2))
+    return gen_diff(file1, file2)
+
+
+def generate_diff_yaml(file_path1, file_path2):
+    file1 = yaml.load(open(file_path1).read(), Loader=SafeLoader)
+    file2 = yaml.load(open(file_path2).read(), Loader=SafeLoader)
     return gen_diff(file1, file2)
 

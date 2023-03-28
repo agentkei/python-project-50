@@ -1,7 +1,8 @@
 import argparse
 import json
 import yaml
-from yaml import SafeLoader 
+from yaml import SafeLoader
+
 
 def arguments():
     my_parser = argparse.ArgumentParser(prog='gendiff',
@@ -17,47 +18,44 @@ def arguments():
     return args
 
 
-def gen_diff(json1, json2):
+def sort_data_lists(list1, list2):
+    set_data = set(list1 + list2)
+    sorted_data_list = sorted(set_data, key=lambda x:
+                              (x[0], x[1] if isinstance(x[1], str) else -x[1]))
+    only_data_list = list(map(list, sorted_data_list))
+    list1 = list(filter(lambda x: x not in only_data_list, list1))
+    list2 = list(filter(lambda x: x not in only_data_list, list2))
+    return only_data_list, list1, list2
 
-    list1 = list((json1).items())
-    list2 = list((json2).items())
-    flat1l = ([list(i) for i in list1 if i not in list2]) 
-    flat2l = ([list(i) for i in list2 if i not in list1]) 
-    
-                                                              
-    gen_dict = set(list((json1).items()) + list((json2).items()))
-    sorted_tuple = sorted(gen_dict, key=lambda x: (x[0], x[1] if isinstance(x[1], str) else -x[1]))
-    only_list = list(map(list, sorted_tuple))
-    
-    list_rezult_diff = []
 
-    for i in only_list:
-        if i in flat2l:
-            i[0] = '+ ' + str(i[0])
-            list_rezult_diff.append(i)
-        elif i in flat1l:
-            i[0] = '- ' + str(i[0]) 
-            list_rezult_diff.append(i)
+def gen_diff(only_data_list, list1, list2):
+    list_diff_data = []
+    for data in only_data_list:
+        if data in list2:
+            data[0] = '+ ' + str(data[0])
+            list_diff_data.append(data)
+        elif data in list1:
+            data[0] = '- ' + str(data[0])
+            list_diff_data.append(data)
         else:
-            list_rezult_diff.append(i)
+            list_diff_data.append(data)
+    return list_diff_data
 
 
-    dict_result_diff = {}
-    for key, value in list_rezult_diff:
+def format_diff_data(diff_data):
+    result_diff_dict = {}
+    for key, value in diff_data:
         if key.startswith("-"):
-            dict_result_diff[key] = value
+            result_diff_dict[key] = value
         elif key.startswith("+"):
-            dict_result_diff[key] = value
+            result_diff_dict[key] = value
         else:
-            dict_result_diff[key] = value
-
-    
-    return (format_str_dict(dict_result_diff))
+            result_diff_dict[key] = value
+    return (format_str_dict(result_diff_dict))
 
 
 def format_str_dict(diff_dict):
     rez_str_dict = "{\n"
-    
     for key, value in diff_dict.items():
         rez_str_dict += f"  {key}: {value}\n"
     rez_str_dict += "}"
@@ -67,11 +65,12 @@ def format_str_dict(diff_dict):
 def generate_diff(file_path1, file_path2):
     file1 = json.load(open(file_path1))
     file2 = json.load(open(file_path2))
+
     return gen_diff(file1, file2)
 
 
 def generate_diff_yaml(file_path1, file_path2):
     file1 = yaml.load(open(file_path1).read(), Loader=SafeLoader)
     file2 = yaml.load(open(file_path2).read(), Loader=SafeLoader)
-    return gen_diff(file1, file2)
 
+    return gen_diff(file1, file2)

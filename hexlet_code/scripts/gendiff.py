@@ -18,40 +18,50 @@ def arguments():
     return args
 
 
-def sort_data_lists(list1, list2):
-    set_data = set(list1 + list2)
-    sorted_data_list = sorted(set_data, key=lambda x:
+def sort_date_lists(file1, file2):
+
+    list_tups1 = list((file1).items())
+    list_tups2 = list((file2).items())
+    list1 = ([list(i) for i in list_tups1 if i not in list_tups2])
+    list2 = ([list(i) for i in list_tups2 if i not in list_tups1])
+
+    set_dict = set(list((file1).items()) + list((file2).items()))
+    sorted_list_tups = sorted(set_dict, key=lambda x:
                               (x[0], x[1] if isinstance(x[1], str) else -x[1]))
-    only_data_list = list(map(list, sorted_data_list))
-    list1 = list(filter(lambda x: x not in only_data_list, list1))
-    list2 = list(filter(lambda x: x not in only_data_list, list2))
-    return only_data_list, list1, list2
+    only_list = list(map(list, sorted_list_tups))
+    return only_list, list1, list2
 
 
-def gen_diff(only_data_list, list1, list2):
-    list_diff_data = []
-    for data in only_data_list:
-        if data in list2:
-            data[0] = '+ ' + str(data[0])
-            list_diff_data.append(data)
-        elif data in list1:
-            data[0] = '- ' + str(data[0])
-            list_diff_data.append(data)
+def get_diff_list(file1, file2):
+    only_list, list1, list2 = sort_date_lists(file1, file2)
+
+    list_rezult_diff = []
+
+    for i in only_list:
+        if i in list2:
+            i[0] = '+ ' + str(i[0])
+            list_rezult_diff.append(i)
+        elif i in list1:
+            i[0] = '- ' + str(i[0])
+            list_rezult_diff.append(i)
         else:
-            list_diff_data.append(data)
-    return list_diff_data
+            list_rezult_diff.append(i)
+    return list_rezult_diff
 
 
-def format_diff_data(diff_data):
-    result_diff_dict = {}
-    for key, value in diff_data:
+def get_diff_dict(file1, file2):
+    list_rezult_diff = get_diff_list(file1, file2)
+    dict_result_diff = {}
+
+    for key, value in list_rezult_diff:
         if key.startswith("-"):
-            result_diff_dict[key] = value
+            dict_result_diff[key] = value
         elif key.startswith("+"):
-            result_diff_dict[key] = value
+            dict_result_diff[key] = value
         else:
-            result_diff_dict[key] = value
-    return (format_str_dict(result_diff_dict))
+            dict_result_diff[key] = value
+
+    return (format_str_dict(dict_result_diff))
 
 
 def format_str_dict(diff_dict):
@@ -66,11 +76,11 @@ def generate_diff(file_path1, file_path2):
     file1 = json.load(open(file_path1))
     file2 = json.load(open(file_path2))
 
-    return gen_diff(file1, file2)
+    return get_diff_dict(file1, file2)
 
 
 def generate_diff_yaml(file_path1, file_path2):
     file1 = yaml.load(open(file_path1).read(), Loader=SafeLoader)
     file2 = yaml.load(open(file_path2).read(), Loader=SafeLoader)
 
-    return gen_diff(file1, file2)
+    return get_diff_dict(file1, file2)

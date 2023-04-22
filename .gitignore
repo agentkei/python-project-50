@@ -7,8 +7,6 @@ dist/
 .coverage.xml
 .pytest_cache/
 .vim
-file1.json
-file2.json
 .pytest_cache
 env
 venv
@@ -16,10 +14,6 @@ push_to_git.sh
 .python-version
 .vscode
 flake8.log
-file1.json
-file2.json
-flat_file1.json
-flat_file2.json
 myenv
 .venv/
 __pycache__/

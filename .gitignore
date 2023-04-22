@@ -20,3 +20,8 @@ file1.json
 file2.json
 flat_file1.json
 flat_file2.json
+myenv
+.venv/
+__pycache__/
+/dist/
+.idea/

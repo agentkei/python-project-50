@@ -14,3 +14,9 @@ env
 venv
 push_to_git.sh
 .python-version
+.vscode
+flake8.log
+file1.json
+file2.json
+flat_file1.json
+flat_file2.json

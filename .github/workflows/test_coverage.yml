@@ -1,5 +1,0 @@
-- name: Test Coverage
-  run: |
-    coverage run --source=my_module -m pytest
-    coverage xml
-    codeclimate-test-reporter --file .coverage.xml

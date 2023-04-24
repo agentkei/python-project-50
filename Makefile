@@ -21,3 +21,6 @@ retry:
 
 test:
 	poetry run pytest
+
+test-coverage:
+	pytest coverage

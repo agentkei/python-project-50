@@ -1,0 +1,17 @@
+version: '2'
+plugins:
+  python:
+    enabled: true
+    dependencies:
+      - coverage
+  test-reporter:
+    enabled: true
+    reporter-id: "coverage"
+  coverage:
+    enabled: true
+    output-format: "coverage.xml"
+    input:
+      - "coverage.xml"
+ratings:
+  paths:
+    - "**.py"

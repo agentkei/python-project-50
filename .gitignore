@@ -19,4 +19,4 @@ myenv
 __pycache__/
 /dist/
 .idea/
-coverage
+.coverage

@@ -17,10 +17,11 @@ retry:
 	poetry install
 	poetry build
 	poetry publish --dry-run
-	python3 -m pip install --user  --force-reinstall dist/*.whl
+	python3 -m pip install --user --force-reinstall dist/*.whl
 
 test:
 	poetry run pytest
 
-test-coverage:
-	pytest coverage
+coverage:
+	coverage run --source=hexlet_code -m pytest
+	coverage report -m

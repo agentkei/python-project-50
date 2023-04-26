@@ -22,5 +22,5 @@ retry:
 test:
 	poetry run pytest
 
-test-coverage:
+test coverage:
 	poetry run pytest --cov=hexlet_code --cov-report xml

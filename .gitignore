@@ -20,3 +20,4 @@ __pycache__/
 /dist/
 .idea/
 .coverage
+coverage.xml

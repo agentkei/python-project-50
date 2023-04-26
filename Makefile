@@ -23,5 +23,4 @@ test:
 	poetry run pytest
 
 coverage:
-	coverage run --source=hexlet_code -m pytest
-	coverage report -m
+	poetry run pytest --cov=hexlet_code --cov-report xml

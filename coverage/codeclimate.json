@@ -1,0 +1,190 @@
+{
+  "ci_service": {
+    "branch": "main",
+    "build_identifier": "",
+    "build_url": "",
+    "commit_sha": "02893e33e5bc79a9e849bd059796faf8ed78821b",
+    "committed_at": 1682538360,
+    "name": ""
+  },
+  "environment": {
+    "gem_version": "",
+    "package_version": "",
+    "pwd": "/home/lilpep8/proj/python-project-50",
+    "prefix": "/home/lilpep8/proj/python-project-50",
+    "rails_root": "",
+    "reporter_version": "0.11.1",
+    "simplecov_root": ""
+  },
+  "git": {
+    "branch": "main",
+    "head": "02893e33e5bc79a9e849bd059796faf8ed78821b",
+    "committed_at": 1682538360
+  },
+  "covered_percent": 90.32258064516128,
+  "covered_strength": 0,
+  "line_counts": {
+    "missed": 18,
+    "covered": 168,
+    "total": 186
+  },
+  "source_files": [
+    {
+      "blob_id": "e1c80c607642560d4805a9c9d971f482ad21ccac",
+      "coverage": "[0,null,null,0,null,null,null,null,0,null,null,null,null,0,0,null,0,null,null,0,0]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 8,
+        "covered": 0,
+        "total": 8
+      },
+      "name": "hexlet_code/scripts/cli.py"
+    },
+    {
+      "blob_id": "0ec6bf0848e3da34e096e6a17fc231b4747a60c9",
+      "coverage": "[1,1,1,null,1,null,null,null,null,null,null,1,1,0,1]",
+      "covered_percent": 87.5,
+      "covered_strength": 0.875,
+      "line_counts": {
+        "missed": 1,
+        "covered": 7,
+        "total": 8
+      },
+      "name": "hexlet_code/scripts/formatting.py"
+    },
+    {
+      "blob_id": "ba05ae8de3f6a494bb861dabb4d13c769d073383",
+      "coverage": "[1,1,1,null,null,null,1,1,1,1,null,1,1,null,1,1,1,null,1,1,1,null,1,1,1,null,1,1,null,null,1,null,null,null,1,1,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 26,
+        "total": 26
+      },
+      "name": "hexlet_code/scripts/recurs_gendiff.py"
+    },
+    {
+      "blob_id": "ca3eaa98fa4cdf1e5a90fdf72bc07d928a34096e",
+      "coverage": "[0,0,null,null,0,0,0,0,null,null,0,0]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 8,
+        "covered": 0,
+        "total": 8
+      },
+      "name": "hexlet_code/scripts/start.py"
+    },
+    {
+      "blob_id": "a33a15c44d7c1df01ae1385714316621d2289a97",
+      "coverage": "[1,1,null,null,null,1,null,null,1,1,1,null,null,1,1,1,1,1,null,1,null,null,null,null,null,1,null,null,1,1,null,null,1,1,1,null,1,1,1,null,1,1,null,1,1,null,1,null,1,1,null,1,null,1,1,1,1,1,1,null,null,1,1,1,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 41,
+        "total": 41
+      },
+      "name": "hexlet_code/formaters/stylish.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "hexlet_code/parse/__init__.py"
+    },
+    {
+      "blob_id": "ae22e389fa4f9ac7001250313ada3e7d91453c93",
+      "coverage": "[1,1,null,null,1,1,1,null,null,1,1,1,1,1,null,0]",
+      "covered_percent": 90.9090909090909,
+      "covered_strength": 0.9090909090909091,
+      "line_counts": {
+        "missed": 1,
+        "covered": 10,
+        "total": 11
+      },
+      "name": "hexlet_code/parse/data_parse.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "hexlet_code/scripts/__init__.py"
+    },
+    {
+      "blob_id": "dd869e93100160e2a7f4561ef281025773add4b6",
+      "coverage": "[1,1,1,1,null,1,null,null,1,1,null,null,1,1,1,1,1,1,1,null,1,null,null,1,1,null,null,1,1,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 22,
+        "total": 22
+      },
+      "name": "hexlet_code/scripts/utility.py"
+    },
+    {
+      "blob_id": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "coverage": "[]",
+      "covered_percent": 0,
+      "covered_strength": 0,
+      "line_counts": {
+        "missed": 0,
+        "covered": 0,
+        "total": 0
+      },
+      "name": "hexlet_code/formaters/__init__.py"
+    },
+    {
+      "blob_id": "56874ef8863c85c42afe4bdd1dce0e4fda308491",
+      "coverage": "[1,1,null,null,null,1,1,1,1,null,1,1,null,1,1,null,1,null,1,1,1,null,null,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 17,
+        "total": 17
+      },
+      "name": "hexlet_code/formaters/format_json.py"
+    },
+    {
+      "blob_id": "0c3e4e69e67952ab3c14d2d71f634f54d5e9359e",
+      "coverage": "[1,null,1,null,null,1,1,1,1,1,1,1,1,null,1,1,null,null,1,1,1,1,1,1,1,null,1,1,1,null,1,null,1,1,1,null,1,1,1,1,1,null,1,null,null,1,1,1,1,null,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 37,
+        "total": 37
+      },
+      "name": "hexlet_code/formaters/format_plain.py"
+    },
+    {
+      "blob_id": "71e3bd27b63a077a8b598c0a601c587a047c3b3d",
+      "coverage": "[1,1,1,null,null,1,1,1,1,1]",
+      "covered_percent": 100,
+      "covered_strength": 1,
+      "line_counts": {
+        "missed": 0,
+        "covered": 8,
+        "total": 8
+      },
+      "name": "hexlet_code/scripts/generate_diff.py"
+    }
+  ],
+  "repo_token": ""
+}

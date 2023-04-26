@@ -19,3 +19,7 @@ myenv
 __pycache__/
 /dist/
 .idea/
+.coverage
+coverage.xml
+ .codeclimate.yml
+htmlcov

@@ -1,12 +1,11 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.1.0"
-description = "Второй учебный проект в курсе Хекслета. Вычисляет различия между двумя конфигурационными файлами."
-authors = ["lilpeep8 <john@example.com>"]
+version = "1.0.0"
+description = "gendiff Compares two configuration files and shows a difference."
+authors = ["lilpeep8 daniloffko@gmail.com>"]
+repository = "https://github.com/agentkei/python-project-50"
 readme = "README.md"
-packages = [
-  {include = "gendiff"}]
-
+packages = [{include = "gendiff"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -23,4 +22,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-gendiff = "gendiff.scripts.start:main"
+gendiff = "gendiff.scripts.gendiff:main"

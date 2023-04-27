@@ -19,7 +19,7 @@ retry:
 	poetry publish --dry-run
 	python3 -m pip install --user --force-reinstall dist/*.whl
 
-pytest:
+test:
 	poetry run pytest
 
 coverage:

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-project-50"
+name = "hexlet-code"
 version = "0.1.0"
 description = "Второй учебный проект в курсе Хекслета. Вычисляет различия между двумя конфигурационными файлами."
 authors = ["lilpeep3 <you@example.com>"]

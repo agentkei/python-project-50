@@ -1,6 +1,6 @@
 import pytest
-from gendiff.scripts.utility import (get_key, get_values,
-                                     get_children, get_meta, get_item)
+from gendiff.utility import (get_key, get_values,
+                             get_children, get_meta, get_item)
 
 
 def test_get_item():

@@ -1,10 +1,10 @@
-from gendiff.scripts.cli import parse_cli
-from gendiff.scripts.generate_diff import gendiff
+from gendiff.cli import parse_cli
+from gendiff.generate_diff import generate_diff
 
 
 def main():
     first, second, format_data = parse_cli()
-    diff = gendiff(first, second, format_data)
+    diff = generate_diff(first, second, format_data)
     print(diff)
 
 

@@ -25,7 +25,7 @@ jobs:
       - name: Run linter and pytest
         run: |
           make lint
-          make test
+          make pytest
       - name: Test code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:

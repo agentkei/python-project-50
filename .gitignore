@@ -24,3 +24,5 @@ coverage.xml
  .codeclimate.yml
 htmlcov
 cc-test-reporter
+file1.yml
+file2.yml

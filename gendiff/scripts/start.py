@@ -1,5 +1,5 @@
-from hexlet_code.scripts.cli import parse_cli
-from hexlet_code.scripts.generate_diff import generate_diff
+from gendiff.scripts.cli import parse_cli
+from gendiff.scripts.generate_diff import generate_diff
 
 
 def main():

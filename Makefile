@@ -11,7 +11,7 @@ package-install:
 	python3 -m pip install --user --force-reinstall dist/*.whl
 
 lint:
-	poetry run flake8 _tests hexlet_code
+	poetry run flake8 _tests gendiff
 	
 retry:
 	poetry install
@@ -23,4 +23,4 @@ test:
 	poetry run pytest
 
 test-coverage:
-	poetry run pytest --cov=hexlet_code --cov-report xml
+	poetry run pytest --cov=gendiff --cov-report xml

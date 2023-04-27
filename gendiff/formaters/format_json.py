@@ -1,6 +1,6 @@
 import json
-from hexlet_code.scripts.utility import (get_key, get_values,
-                                         get_children, get_item)
+from gendiff.scripts.utility import (get_key, get_values,
+                                     get_children, get_item)
 
 
 def prepare_data(data):

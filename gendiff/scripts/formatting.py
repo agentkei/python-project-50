@@ -1,6 +1,6 @@
-from hexlet_code.formaters.stylish import stringify
-from hexlet_code.formaters.format_json import make_json
-from hexlet_code.formaters.format_plain import make_plain
+from gendiff.formaters.stylish import stringify
+from gendiff.formaters.format_json import make_json
+from gendiff.formaters.format_plain import make_plain
 
 FORMAT = {
     "stylish": stringify,

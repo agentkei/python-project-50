@@ -1,6 +1,6 @@
-from hexlet_code.scripts.utility import (get_key, get_values,
-                                         get_children, get_meta, get_item)
-from hexlet_code.formaters.stylish import TRANSLATOR
+from gendiff.scripts.utility import (get_key, get_values,
+                                     get_children, get_meta, get_item)
+from gendiff.formaters.stylish import TRANSLATOR
 
 
 def value_to_str(value):

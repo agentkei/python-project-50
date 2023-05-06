@@ -2,6 +2,7 @@ from gendiff.formaters.stylish import stringify
 from gendiff.formaters.format_json import make_json
 from gendiff.formaters.format_plain import make_plain
 
+
 FORMAT = {
     "stylish": stringify,
     "plain": make_plain,

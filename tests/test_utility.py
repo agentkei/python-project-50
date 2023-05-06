@@ -36,10 +36,10 @@ def test_get_values():
 
 def test_get_meta():
 
-    assert get_meta({"meta": "data"}) == "data"
-
-    with pytest.raises(KeyError):
-        get_meta({"not_meta": "data"})
+    assert get_meta({"unchanged": "data"}) == "data"
+    assert get_meta({"added": "data"}) == "data"
+    assert get_meta({"removed": "data"}) == "data"
+    assert get_meta({"changed": "data"}) == "data"
 
 
 def test_get_children():

@@ -18,4 +18,4 @@ def parse_cli():
                         help='set format of output')
 
     args = parser.parse_args()
-    return args.first_file, args.second_file, args.format
+    return args

@@ -3,7 +3,10 @@ from gendiff import generate_diff
 
 
 def main():
-    first, second, format_data = parse_cli()
+    args = parse_cli()
+    first = args.first_file
+    second = args.second_file
+    format_data = args.format
     diff = generate_diff(first, second, format_data)
     print(str(diff))
 

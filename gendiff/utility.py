@@ -22,8 +22,14 @@ def get_values(data):
 
 
 def get_meta(data):
-    return data["meta"]
-
+    if 'unchanged' in data:
+        return data["unchanged"]
+    elif 'added' in data:
+        return data["added"]
+    elif 'removed' in data:
+        return data["removed"]
+    elif 'changed' in data:
+        return data["changed"]
 
 def get_children(data):
     children = data.get("children")

@@ -26,4 +26,4 @@ htmlcov
 cc-test-reporter
 file1.yml
 file2.yml
-gendiff/recurs_back_vers.py
+recurs_back_vers.py

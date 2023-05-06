@@ -1,4 +1,4 @@
-def make_diff(data1, data2):
+def make_diff(data1, data2):  # noqa:C901
     def inner(current_data1, current_data2, ):
         all_keys = sorted(
             set(current_data1.keys()) | set(current_data2.keys())
@@ -25,12 +25,12 @@ def make_diff(data1, data2):
                     item["value"] = {"first": first, "second": second}
                     item["changed"] = {'first': '-', 'second': '+'}
 
-            elif has_key1 == True and has_key2 == False:
+            elif has_key1 and has_key2 is False:
                 condition = ('-', current_data1[key])
                 item["value"] = {"one": condition[1]}
                 item["added"] = {"condition": condition[0]}
 
-            elif has_key2 == True and has_key1 == False:
+            elif has_key2 and has_key1 is False:
                 condition = ('+', current_data2[key])
                 item["value"] = {"one": condition[1]}
                 item["removed"] = {"condition": condition[0]}

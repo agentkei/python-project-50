@@ -31,6 +31,7 @@ def get_meta(data):
     elif 'changed' in data:
         return data["changed"]
 
+
 def get_children(data):
     children = data.get("children")
     if isinstance(children, dict):

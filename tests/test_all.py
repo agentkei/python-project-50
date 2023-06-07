@@ -1,6 +1,8 @@
 import pytest
 from gendiff.generate_diff import generate_diff
 from gendiff.data_output_format import UNSUPPORTED_FORMAT
+from gendiff.parse.file_reader import FILEREAD_ERROR, file_reader
+
 
 FLAT_JSON1 = 'tests/fixtures/diff_requests/flat_file1.json'
 FLAT_JSON2 = 'tests/fixtures/diff_requests/flat_file2.json'
@@ -56,3 +58,10 @@ def test_unsupported_render_format():
         generate_diff(FLAT_JSON1, FLAT_JSON2, 'wrong format')
     assert pytest_error.type == ValueError
     assert str(pytest_error.value) == UNSUPPORTED_FORMAT
+
+
+def test_open_file_fail():
+    with pytest.raises(RuntimeError) as pytest_error:
+        file_reader('wrong file path')
+    assert pytest_error.type == RuntimeError
+    assert str(pytest_error.value) == FILEREAD_ERROR.format('wrong file path')

@@ -1,0 +1,40 @@
+{
+    "status": "removed",
+    "key": "follow",
+    "value": {
+      "old": false,
+      "new": null
+    }
+  },
+  {
+    "status": "unchanged",
+    "key": "host",
+    "value": {
+      "old": "hexlet.io",
+      "new": null
+    }
+  },
+  {
+    "status": "removed",
+    "key": "proxy",
+    "value": {
+      "old": "123.234.53.22",
+      "new": null
+    }
+  },
+  {
+    "status": "updated",
+    "key": "timeout",
+    "value": {
+      "old": 50,
+      "new": 20
+    }
+  },
+  {
+    "status": "added",
+    "key": "verbose",
+    "value": {
+      "old": null,
+      "new": true
+    }
+  }

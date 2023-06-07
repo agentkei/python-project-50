@@ -1,0 +1,168 @@
+{
+    "status": "nested",
+    "key": "common",
+    "value": {
+      "old": null,
+      "new": null
+    },
+    "children": 
+      {
+        "status": "added",
+        "key": "follow",
+        "value": {
+          "old": null,
+          "new": false
+        }
+      },
+      {
+        "status": "unchanged",
+        "key": "setting1",
+        "value": {
+          "old": "Value 1",
+          "new": null
+        }
+      },
+      {
+        "status": "removed",
+        "key": "setting2",
+        "value": {
+          "old": 200,
+          "new": null
+        }
+      },
+      {
+        "status": "updated",
+        "key": "setting3",
+        "value": {
+          "old": true,
+          "new": null
+        }
+      },
+      {
+        "status": "added",
+        "key": "setting4",
+        "value": {
+          "old": null,
+          "new": "blah blah"
+        }
+      },
+      {
+        "status": "added",
+        "key": "setting5",
+        "value": {
+          "old": null,
+          "new": {
+            "key5": "value5"
+          }
+        }
+      },
+      {
+        "status": "nested",
+        "key": "setting6",
+        "value": {
+          "old": null,
+          "new": null
+        },
+        "children": 
+          {
+            "status": "nested",
+            "key": "doge",
+            "value": {
+              "old": null,
+              "new": null
+            },
+            "children": 
+              {
+                "status": "updated",
+                "key": "wow",
+                "value": {
+                  "old": "",
+                  "new": "so much"
+                }
+              }
+            
+          },
+          {
+            "status": "unchanged",
+            "key": "key",
+            "value": {
+              "old": "value",
+              "new": null
+            }
+          },
+          {
+            "status": "added",
+            "key": "ops",
+            "value": {
+              "old": null,
+              "new": "vops"
+            }
+          }
+        
+      }
+    
+  },
+  {
+    "status": "nested",
+    "key": "group1",
+    "value": {
+      "old": null,
+      "new": null
+    },
+    "children": 
+      {
+        "status": "updated",
+        "key": "baz",
+        "value": {
+          "old": "bas",
+          "new": "bars"
+        }
+      },
+      {
+        "status": "unchanged",
+        "key": "foo",
+        "value": {
+          "old": "bar",
+          "new": null
+        }
+      },
+      {
+        "status": "updated",
+        "key": "nest",
+        "value": {
+          "old": {
+            "key": "value"
+          },
+          "new": "str"
+        }
+      }
+    
+  },
+  {
+    "status": "removed",
+    "key": "group2",
+    "value": {
+      "old": {
+        "abc": 12345,
+        "deep": {
+          "id": 45
+        }
+      },
+      "new": null
+    }
+  },
+  {
+    "status": "added",
+    "key": "group3",
+    "value": {
+      "old": null,
+      "new": {
+        "deep": {
+          "id": {
+            "number": 45
+          }
+        },
+        "fee": 100500
+      }
+    }
+  }

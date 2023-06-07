@@ -1,51 +1,77 @@
-from gendiff.utility import (get_key, get_values,
-                             get_children, get_meta, get_item)
-from gendiff.formaters.stylish import TRANSLATOR
+from typing import Any
 
 
-def value_to_str(value):
-    is_bool_or_none = bool(isinstance(value, bool) or value is None)
-    if isinstance(value, dict):
-        output = '[complex value]'
-    elif is_bool_or_none:
-        output = TRANSLATOR.get(value)
+ADDED_TEMPLATE_PLAIN = "Property '{}' was added with value: {}"
+REMOVED_TEMPLATE_PLAIN = "Property '{}' was removed"
+UPDATED_TEMPLATE_PLAIN = "Property '{}' was updated. From {} to {}"
+COMPLEX_VALUE = "[complex value]"
+PATH = "{}.{}"
+
+
+def make_plain(diff_tree: list) -> str:
+    """
+    Description:
+    ---
+        Rendering the diff tree to plain format.
+
+    Parameters:
+    ---
+        - diff_tree (dict): The difference tree.
+
+        - parent (str): The path of the changed value
+        from the parent (default: '').
+        - result (list): Initial result of aggregation (default: None).
+
+    Return:
+    ---
+        String visualization of a tree in plain format.
+    """
+    rendered_data = render_nodes(diff_tree)
+    return rendered_data
+
+
+def render_nodes(diff: list, source='') -> str:
+
+    result = []
+    diff.sort(key=lambda node: node['key'])
+
+    for node in diff:
+
+        path = PATH.format(source, node['key']) if source else node['key']
+
+        if node['status'] == 'removed':
+            result.append(REMOVED_TEMPLATE_PLAIN.format(path))
+
+        elif node['status'] == 'added':
+            result.append(ADDED_TEMPLATE_PLAIN.format(
+                path,
+                validate_data(node['value']['new'])
+            ))
+
+        elif node['status'] == 'updated':
+            result.append(UPDATED_TEMPLATE_PLAIN.format(
+                path,
+                validate_data(node['value']['old']),
+                validate_data(node['value']['new'])
+            ))
+
+        elif node['status'] == 'nested':
+            result.append(render_nodes(node['children'], path))
+
+    return '\n'.join(result)
+
+
+def validate_data(value: Any) -> str:
+
+    if isinstance(value, bool):
+        valid_value = str(value).lower()
+    elif value is None:
+        valid_value = 'null'
     elif isinstance(value, int):
-        output = str(value)
+        valid_value = str(value)
+    elif isinstance(value, dict):
+        valid_value = COMPLEX_VALUE
     else:
-        output = f"'{value}'"
-    return output
+        valid_value = f"'{value}'"
 
-
-def make_plain(full_data):
-    def inner(data, current_key):
-        lines = []
-        for item in get_item(data):
-            key = get_key(item)
-            values = get_values(item)
-            children = get_children(item)
-
-            meta = get_meta(item)
-            first = meta.get("first")
-            second = meta.get("second")
-
-            symbols = (first, second) if first else meta.get("condition")
-
-            if values:
-                line = f"Property '{current_key + key}'"
-                val1 = value_to_str(values[0])
-
-                if len(values) > 1:
-                    val2 = value_to_str(values[1])
-                    line += f' was updated. From {val1} to {val2}'
-                elif (sym := symbols[0]) == ' ':
-                    continue
-                else:
-                    line += f' was added with value: {val1}' if (
-                            sym == "+") else ' was removed'
-            else:
-                deep_key = current_key + f"{key}."
-                line = inner(children, deep_key)
-            lines.append(line)
-        return "\n".join(lines)
-
-    return inner(full_data, "")
+    return valid_value

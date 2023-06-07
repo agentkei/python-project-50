@@ -1,68 +1,113 @@
-import itertools
-from gendiff.utility import (get_key, get_values,
-                             get_children, get_meta, get_item)
+STARTLINE_TEMPLATE = '{}{} {}: {{'
+DIFFLINE_TEMPLATE = '{}{} {}: {}'
+ENDLINE_TEMPLATE = '{}  }}'
+FRAME_TEMPLATE = '{{\n{}\n}}'
+NESTING_INDENTATION = 4
+SIGN_SPACING = 2
 
 
-TRANSLATOR = {True: "true", False: "false", None: "null"}
+def make_stylish(diff_tree: dict) -> str:
+    """
+    Description:
+    ---
+        Rendering the diff tree to stylish format.
+
+    Parameters:
+    ---
+        - diff_tree (dict): The difference tree.
+
+        - diff_depth (int): Indentation value for a line (default: 0).
+
+    Return:
+    ---
+        result (str): String visualization of a tree in stylish format.
+    """
+    rendered_data = FRAME_TEMPLATE.format(render_nodes(diff_tree))
+    return rendered_data
 
 
-def translate(value):
-    is_bool_or_none = bool(isinstance(value, bool) or value is None)
-    return TRANSLATOR.get(value) if is_bool_or_none else value
+def render_nodes(diff: list, level: int = 1) -> str:  # noqa: C901
+
+    result = []
+    indent = calculate_indent(level)
+    diff.sort(key=lambda node: node['key'])
+
+    for node in diff:
+
+        if node['status'] == 'removed':
+            result.append(compose_line(
+                node['key'], node['value']['old'], '-', level
+            ))
+
+        elif node['status'] == 'added':
+            result.append(compose_line(
+                node['key'], node['value']['new'], '+', level
+            ))
+
+        elif node['status'] == 'unchanged':
+            result.append(compose_line(
+                node['key'], node['value']['old'], ' ', level
+            ))
+
+        elif node['status'] == 'updated':
+            result.append(compose_line(
+                node['key'], node['value']['old'], '-', level
+            ))
+            result.append(compose_line(
+                node['key'], node['value']['new'], '+', level
+            ))
+
+        elif node['status'] == 'nested':
+            result.extend([
+                STARTLINE_TEMPLATE.format(indent, ' ', node['key']),
+                render_nodes(node['children'], level + 1),
+                ENDLINE_TEMPLATE.format(indent)
+            ])
+
+    return '\n'.join(result)
 
 
-def deep_line(value, deep_depth, indent, replacer):
+def calculate_indent(level: int) -> str:
+
+    return ' ' * (level * NESTING_INDENTATION - SIGN_SPACING)
+
+
+def compose_line(key, value, sign: str, level: int) -> str:
+
+    result = []
+    indent = calculate_indent(level)
+    level += 1
+
     if isinstance(value, dict):
-        deeper_depth = deep_depth + 2 * indent
-        deeper_indent = deeper_depth * replacer
-        current_deep_indent = deep_depth * replacer
+        result.extend([
+            STARTLINE_TEMPLATE.format(indent, sign, key),
+            formate_dict_value(value, level),
+            ENDLINE_TEMPLATE.format(indent)
+        ])
 
-        deep_lines = [
-            f'{deeper_indent}{_key}: '
-            f'{deep_line(val, deeper_depth, indent, replacer)}'
-            for _key, val in value.items()
-        ]
+    else:
+        result.append(DIFFLINE_TEMPLATE.format(
+            indent, sign, key, validate_data(value)
+        ))
 
-        result = itertools.chain(
-            "{", deep_lines, [current_deep_indent + "}"]
-        )
-        return "\n".join(result)
-    return str(translate(value))
+    return '\n'.join(result)
 
 
-def stringify(diff_tree, replacer=' ', indent=2):
-    def inner(data, depth):
-        lines = list()
+def formate_dict_value(dict_value: dict, level: int) -> str:
 
-        deep_depth = depth + indent
-        deep_indent = deep_depth * replacer
-        current_indent = depth * replacer
+    result = []
 
-        for item in get_item(data):
-            key = get_key(item)
+    for key, value in dict_value.items():
+        result.append(compose_line(key, value, ' ', level))
 
-            values = get_values(item)
-            children = get_children(item)
+    return '\n'.join(result)
 
-            meta = get_meta(item)
 
-            first = meta.get("first")
-            second = meta.get("second")
-
-            symbols = (first, second) if first else meta.get("condition")
-
-            if values:
-                for value, symbol in zip(values, symbols):
-                    line = f'{deep_indent + symbol + " "}{key}: '
-                    deeper_indent = deep_depth + indent
-                    line += deep_line(value, deeper_indent, indent, replacer)
-                    lines.append(line)
-
-            else:
-                line = f'{deep_indent + symbols[0] + " "}{key}: '
-                line += inner(children, deep_depth + indent)
-                lines.append(line)
-
-        output = itertools.chain("{", lines, [current_indent + "}"])
-        return "\n".join(output)
-    return inner(diff_tree, 0)
+def validate_data(value) -> str:
+    if isinstance(value, bool):
+        valid_value = str(value).lower()
+    elif value is None:
+        valid_value = 'null'
+    else:
+        valid_value = str(value)
+    return valid_value

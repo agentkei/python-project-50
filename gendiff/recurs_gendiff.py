@@ -1,40 +1,44 @@
-def make_diff(data1, data2):  # noqa:C901
-    def inner(current_data1, current_data2, ):
-        all_keys = sorted(
-            set(current_data1.keys()) | set(current_data2.keys())
-        )
+from typing import Any
 
-        differences = list()
-        for key in all_keys:
-            item = dict()
-            item["key"] = str(key)
 
-            has_key1 = key in current_data1
-            has_key2 = key in current_data2
+def make_diff(data1: dict, data2: dict) -> dict:
+    all_keys = sorted(set(data1.keys()) | set(data2.keys()))
 
-            if has_key1 and has_key2:
-                first, second = current_data1[key], current_data2[key]
+    diff_tree = []
+    for key in all_keys:
 
-                if first == second:
-                    item["unchanged"] = {"condition": ' '}
-                    item["value"] = {"both": first}
-                elif isinstance(first, dict) and isinstance(second, dict):
-                    item["unchanged"] = {"condition": ' '}
-                    item["children"] = inner(first, second)
-                else:
-                    item["value"] = {"first": first, "second": second}
-                    item["changed"] = {'first': '-', 'second': '+'}
+        if key in data1 and key not in data2:
+            diff_tree.append(make_node(key, 'removed', old_value=data1[key]))
 
-            elif has_key1 and has_key2 is False:
-                condition = ('-', current_data1[key])
-                item["value"] = {"one": condition[1]}
-                item["added"] = {"condition": condition[0]}
+        elif key not in data1 and key in data2:
+            diff_tree.append(make_node(key, 'added', value=data2[key]))
 
-            elif has_key2 and has_key1 is False:
-                condition = ('+', current_data2[key])
-                item["value"] = {"one": condition[1]}
-                item["removed"] = {"condition": condition[0]}
+        elif data1[key] == data2[key]:
+            diff_tree.append(make_node(key, 'unchanged', old_value=data1[key]))
 
-            differences.append(item)
-        return differences
-    return inner(data1, data2)
+        elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
+            child_diff = make_diff(data1[key], data2[key])
+            diff_tree.append(make_node(key, 'nested', children=child_diff))
+
+        else:
+            diff_tree.append(
+                make_node(key, 'updated',
+                          value=data2[key], old_value=data1[key]))
+
+    return diff_tree
+
+
+def make_node(key: Any, status: str, old_value=None,
+              value=None, children=None) -> dict:
+
+    node = {
+        'status': status,
+        'key': key,
+        'value': {
+            'old': old_value,
+            'new': value
+        },
+    }
+    if children is not None:
+        node['children'] = children
+    return node

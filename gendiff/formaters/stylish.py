@@ -72,7 +72,7 @@ def calculate_indent(level: int) -> str:
     return ' ' * (level * NESTING_INDENTATION - SIGN_SPACING)
 
 
-def compose_line(key, value, sign: str, level: int) -> str:
+def compose_line(key: str, value: str, sign: str, level: int) -> str:
 
     result = []
     indent = calculate_indent(level)

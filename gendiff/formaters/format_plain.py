@@ -8,7 +8,7 @@ COMPLEX_VALUE = "[complex value]"
 PATH = "{}.{}"
 
 
-def make_plain(diff_tree: list) -> str:
+def make_plain(diff_tree: dict) -> str:
     """
     Description:
     ---

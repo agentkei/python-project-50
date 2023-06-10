@@ -60,7 +60,7 @@ def test_unsupported_render_format():
     assert str(pytest_error.value) == UNSUPPORTED_FORMAT
 
 
-def test_open_file_fail():
+def test_open_file_file():
     with pytest.raises(RuntimeError) as pytest_error:
         file_reader('wrong file path')
     assert pytest_error.type == RuntimeError

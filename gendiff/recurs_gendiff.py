@@ -2,6 +2,22 @@ from typing import Any
 
 
 def make_diff(data1: dict, data2: dict) -> dict:
+    """
+    Description:
+    ---
+    Generate a difference tree between two dictionaries.
+
+    Parameters:
+    ---
+    - data1 (dict): The first dictionary for comparison.
+    - data2 (dict): The second dictionary for comparison.
+
+    Returns:
+    ---
+    diff_tree (dict): The difference tree representing
+    the changes between the two dictionaries.
+    """
+
     all_keys = sorted(set(data1.keys()) | set(data2.keys()))
 
     diff_tree = []
@@ -30,7 +46,24 @@ def make_diff(data1: dict, data2: dict) -> dict:
 
 def make_node(key: Any, status: str, old_value=None,
               value=None, children=None) -> dict:
+    """
+    Description:
+    ---
+    Create a node for the difference tree.
 
+    Parameters:
+    ---
+    - key (Any): The key associated with the node.
+    - status (str): The status of the node
+      (e.g., 'added', 'removed', 'updated').
+    - old_value (Any): The old value associated with the node (default: None).
+    - value (Any): The new value associated with the node (default: None).
+    - children (dict): The children nodes of the current node (default: None).
+
+    Returns:
+    ---
+    node (dict): The created node for the difference tree.
+    """
     node = {
         'status': status,
         'key': key,

@@ -1,13 +1,11 @@
+#!/usr/bin/env python3
 from gendiff.cli import parse_cli
 from gendiff import generate_diff
 
 
 def main():
     args = parse_cli()
-    first = args.first_file
-    second = args.second_file
-    format_data = args.format
-    diff = generate_diff(first, second, format_data)
+    diff = generate_diff(args.first_file, args.second_file, args.format)
     print(str(diff))
 
 

@@ -19,7 +19,7 @@ def make_plain(diff_tree: dict) -> str:
         - diff_tree (dict): The difference tree.
 
         - parent (str): The path of the changed value
-        from the parent (default: '').
+          from the parent (default: '').
         - result (list): Initial result of aggregation (default: None).
 
     Return:

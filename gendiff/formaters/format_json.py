@@ -19,6 +19,4 @@ def make_json(diff_tree: dict) -> str:
     """
 
     json_string = json.dumps(diff_tree, indent=2)
-    json_string = json_string.replace('[', '').replace(']', '')
-    json_string = json_string.strip()
     return json_string

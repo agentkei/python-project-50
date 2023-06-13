@@ -1,4 +1,5 @@
-{
+[
+  {
     "status": "removed",
     "key": "follow",
     "value": {
@@ -38,3 +39,4 @@
       "new": true
     }
   }
+]

@@ -26,6 +26,7 @@ FORMAT = {"stylish": make_stylish,
 
 
 def get_format(diff_tree: dict, format_="stylish") -> str:
-    if not (func := FORMAT.get(format_)):
+    if func := FORMAT.get(format_):
+        return func(diff_tree)
+    else:
         raise ValueError(UNSUPPORTED_FORMAT)
-    return func(diff_tree)

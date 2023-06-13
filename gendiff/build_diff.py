@@ -1,6 +1,3 @@
-from typing import Any
-
-
 def make_diff(data1: dict, data2: dict) -> dict:
     """
     Description:
@@ -44,7 +41,7 @@ def make_diff(data1: dict, data2: dict) -> dict:
     return diff_tree
 
 
-def make_node(key: Any, status: str, old_value=None,
+def make_node(key: str, status: str, old_value=None,
               value=None, children=None) -> dict:
     """
     Description:
@@ -53,12 +50,12 @@ def make_node(key: Any, status: str, old_value=None,
 
     Parameters:
     ---
-    - key (Any): The key associated with the node.
+    - key (str): The key associated with the node.
     - status (str): The status of the node
       (e.g., 'added', 'removed', 'updated').
-    - old_value (Any): The old value associated with the node (default: None).
-    - value (Any): The new value associated with the node (default: None).
-    - children (dict): The children nodes of the current node (default: None).
+    - old_value : The old value associated with the node (default: None).
+    - value : The new value associated with the node (default: None).
+    - children: The children nodes of the current node (default: None).
 
     Returns:
     ---

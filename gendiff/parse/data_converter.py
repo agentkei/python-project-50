@@ -48,9 +48,9 @@ Usage:
 
 
 def load_data(data: str, data_format: str) -> dict:
-    if data_format == '.json':
+    if data_format == 'json':
         return json.loads(data)
-    elif data_format in ['.yml', '.yaml']:
+    elif data_format in ['yml', 'yaml']:
         return yaml.load(data, Loader=yaml.FullLoader)
     else:
         raise ValueError(UNSUPPORTED_TYPE.format(data_format))

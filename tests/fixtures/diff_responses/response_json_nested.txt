@@ -1,11 +1,12 @@
-{
+[
+  {
     "status": "nested",
     "key": "common",
     "value": {
       "old": null,
       "new": null
     },
-    "children": 
+    "children": [
       {
         "status": "added",
         "key": "follow",
@@ -63,7 +64,7 @@
           "old": null,
           "new": null
         },
-        "children": 
+        "children": [
           {
             "status": "nested",
             "key": "doge",
@@ -71,7 +72,7 @@
               "old": null,
               "new": null
             },
-            "children": 
+            "children": [
               {
                 "status": "updated",
                 "key": "wow",
@@ -80,7 +81,7 @@
                   "new": "so much"
                 }
               }
-            
+            ]
           },
           {
             "status": "unchanged",
@@ -98,9 +99,9 @@
               "new": "vops"
             }
           }
-        
+        ]
       }
-    
+    ]
   },
   {
     "status": "nested",
@@ -109,7 +110,7 @@
       "old": null,
       "new": null
     },
-    "children": 
+    "children": [
       {
         "status": "updated",
         "key": "baz",
@@ -136,7 +137,7 @@
           "new": "str"
         }
       }
-    
+    ]
   },
   {
     "status": "removed",
@@ -166,3 +167,4 @@
       }
     }
   }
+]

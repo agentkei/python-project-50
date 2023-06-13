@@ -21,13 +21,6 @@ Please, check that the file path is entered correctly.'''
 2. get_file_extension(file_path: str) -> str:
    - Extracts the file extension from the file_path parameter
      and returns it as a lowercase string.
-
-3. load_file_with_format(file_path: str) -> tuple:
-   - Calls the file_reader and get_file_extension
-     functions to load the file content and its extension.
-
-   - Returns a tuple containing the file content
-     as a string and the file extension as a lowercase string.
     """
 
 
@@ -42,10 +35,6 @@ def file_reader(file_path: str) -> str:
 def get_file_extension(file_path: str) -> str:
 
     _, file_extension = path.splitext(file_path)
-    file_extension = file_extension.lower()
+    file_extension = file_extension.lower().lstrip('.')
 
     return file_extension
-
-
-def load_data_with_extension(file_path: str) -> tuple:
-    return file_reader(file_path), get_file_extension(file_path)

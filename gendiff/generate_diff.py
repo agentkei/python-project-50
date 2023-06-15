@@ -24,7 +24,7 @@ def generate_diff(
     ---
     result (str): The difference between the two files in the specified format.
     """
-    data1 = (load_data(file_reader(filepath1), get_file_extension(filepath1)))
-    data2 = (load_data(file_reader(filepath2), get_file_extension(filepath2)))
+    data1 = load_data(file_reader(filepath1), get_file_extension(filepath1))
+    data2 = load_data(file_reader(filepath2), get_file_extension(filepath2))
     diff_tree = make_diff(data1, data2)
     return get_format(diff_tree, default_format_data)

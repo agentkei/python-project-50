@@ -25,8 +25,8 @@ FORMAT = {"stylish": make_stylish,
           "json": make_json}
 
 
-def get_format(diff_tree: dict, format_="stylish") -> str:
-    if func := FORMAT.get(format_):
+def get_format(diff_tree: dict, format="stylish") -> str:
+    if func := FORMAT.get(format):
         return func(diff_tree)
     else:
         raise ValueError(UNSUPPORTED_FORMAT)
